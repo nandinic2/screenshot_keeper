@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>Welcome!</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    </head>
+    <body>
+      <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Screenshot Keeper!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/index">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/pictures">Saved Screenshots</a>
+            <a class="nav-item nav-link" href="/input">Add New</a>
+          </div>
+        </div>
+      </nav>
+      {% if session %}
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-5">Add new</h1>
+          <p class="lead">Add your screenshots!</p>
+        </div>
+      </div>
+        <form method="POST" action="/create" enctype="multipart/form-data">
+            <div class="form-group">
+                <input class="form-control" type="text" name="file_name" placeholder="Name of file"><br>
+                <input style="text-transform: uppercase;" class="form-control" type="text" name="category" placeholder="Category"><br>
+                <input type="file" class="form-control-file" name="screenshot" id="exampleFormControlFile1">
+              </div>
+              <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+          {% else %}
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <a href="index"><h1>Log in!</h1></a>
+            </div>
+          </div>
+          {% endif %}
+        </div> <!--container-->
+    </body>
+</html>

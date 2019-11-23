@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Log in</title>
+  </head>
+  <body>
+    <div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Screenshot Keeper!</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="/pictures">Saved Screenshots</a>
+          <a class="nav-item nav-link" href="/input">Add New</a>
+        </div>
+      </div>
+    </nav>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display">Screenshot Keeper!</h1>
+          <p class="lead">Simply log in and save your screenshots!</p>
+        </div>
+      </div>
+      <ol>
+        {% for picture in pictures %}
+        <li><img src="{{url_for('file', filename=picture['screenshot'])}}" width=100px height = 100px></li>
+        {% endfor %} <!-- have to end in jinja-->
+      </ol>
+
+          {% if session %}
+          <p>You are logged as in {{ session['username']}}.<a href="/logout"> Log out</a></p>
+          {% else %}
+          <form action="/login" method="post">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" name="username" class="form-control" id="inlineFormInput" placeholder="Username">
+            </div> <!--username-->
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div> <!--password-->
+            <button type="submit" class="btn btn-primary">Log in</button>
+
+            <p>Need an account?<a href="/signup"> Create one.</a> </p>
+            {% endif %}
+
+          </form>
+
+        </div> <!--container-->
+      </body>
+</html>

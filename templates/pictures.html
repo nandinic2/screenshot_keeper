@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pictures</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Screenshot Keeper!</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/index">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="/pictures">Saved Screenshots</a>
+          <a class="nav-item nav-link" href="/input">Add New</a>
+
+          </form>
+
+        </div>
+      </div>
+    </nav>
+    {% if session %}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display">Screenshots</h1>
+        <p class="lead">Find all your previous screenshots below!</p>
+      </div>
+    </div>
+
+      <form method="POST" action="/searched">
+        <input type="text" placeholder="Search by category" name="search">
+        <button type="submit">Submit</button>
+      </form><br>
+      <ol>
+      {% for picture in pictures %}
+      <li>{{picture.file_name}} - {{picture.category}} <img src="{{url_for('file', filename=picture['screenshot'])}}" height = 200px></li><br>
+      {% endfor %} <!-- have to end in jinja-->
+    </ol>
+    <form method= "post" action="/deleteAll">
+      <p>Want to clear one? Enter the name of the screenshot.</p>
+      <input type="text" placeholder="Name" name="name">
+      <input type="submit" value="Submit"/>
+      <br>
+      <br>
+      <p>Want to clear all? Enter your password.</p>
+      <input type="password" placeholder="Password" name="password" maxlength="40">
+      <input type="submit" value="Submit"/>
+    </form>
+    {% else %}
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <a href="index"><h1>Log in!</h1></a>
+      </div>
+    </div>
+    {% endif %}
+  </div> <!--container-->
+  </body>
+</html>
