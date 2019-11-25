@@ -1,6 +1,6 @@
 from app import app
 from flask import Flask, request, send_file, url_for, render_template, redirect, session, g
-from flask_bootstrap import Bootstrap
+#from flask_bootstrap import Bootstrap
 from app.models import model
 
 
