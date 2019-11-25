@@ -30,7 +30,6 @@ MarkupSafe==1.1.1
 MouseInfo==0.0.4
 Click==7.0
 dnspython==1.16.0
-PIL==1.1.7
 Pillow==6.2.0
 pillowcase==2.0.0
 PyAutoGUI==0.9.47
